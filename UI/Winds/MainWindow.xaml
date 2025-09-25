@@ -1,0 +1,91 @@
+﻿<Window x:Class="LaGustosa.UI.Winds.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LaGustosa.UI.Winds"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="LaGustosa" Height="800" Width="1500" Icon="/Resourse/Img/icon.ico">
+
+    <WindowChrome.WindowChrome>
+        <WindowChrome />
+    </WindowChrome.WindowChrome>
+
+    <Grid Style="{StaticResource BackgroundMain}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="30*"/>
+            <ColumnDefinition Width="100*"/>
+        </Grid.ColumnDefinitions>
+
+        <DockPanel Grid.Column="1">
+            <Border x:Name="MBorder" Style="{StaticResource BorderMainWdn}" >
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock x:Name="TimeTextBlock" Style="{StaticResource TbGrid}" Margin="5,3,0,0" />
+                    <TextBlock x:Name="FullNameTextBlock" Style="{StaticResource TbGrid}" Margin="70,3,0,0" />
+                    <TextBlock x:Name="RoleTextBlock" Style="{StaticResource TbGrid}" Margin="350,3,0,0" FontWeight="Bold" />
+                    <Image Source="/Resourse/Img/MinimizeWindow.png" Style="{StaticResource ImgMain}" Grid.Column="1" Margin="0,0,100,0"/>
+                    <Image Source="/Resourse/Img/ExpandWindow.png" Style="{StaticResource ImgMain}" Grid.Column="1" Margin="0,0,58,0"/>
+                    <Image Source="/Resourse/Img/CloseWindow.png"  Style="{StaticResource ImgMain}" x:Name="ImgClose" MouseDown="ImgClose_MouseDown" Grid.Column="1" Margin="0,0,15,0"/>
+                </Grid>
+            </Border>
+        </DockPanel>
+
+        <Grid Grid.RowSpan="2" Style="{StaticResource GMain}"/>
+
+        <TextBlock Text="LaGustosa" Style="{StaticResource Foreground}" FontSize="45" Margin="20,10,0,0"/>
+
+        <Grid Grid.RowSpan="2">
+            
+
+            <RadioButton Style="{StaticResource menuButton}"  Margin="0,213,0,531" x:Name="RbMenu" Click="RbMenu_Click">
+                <StackPanel Style="{StaticResource SPMain}">
+                    <TextBlock Text="Меню" Style="{StaticResource TextRadioForeground}"/>
+                </StackPanel>
+            </RadioButton>
+            <RadioButton Style="{StaticResource menuButton}" Margin="0,307,0,437" x:Name="RbOrderChef" Click="RbOrderChef_Click">
+                <StackPanel Style="{StaticResource SPMain}">
+                    <TextBlock Text="Заказы" Style="{StaticResource TextRadioForeground}" />
+                </StackPanel>
+            </RadioButton>
+            <RadioButton Style="{StaticResource menuButton}" Margin="0,299,0,445" x:Name="RbOrder" Click="RbOrder_Click" >
+                <StackPanel Style="{StaticResource SPMain}">
+                    <TextBlock Text="Заказы" Style="{StaticResource TextRadioForeground}" />
+                </StackPanel>
+            </RadioButton>
+            <RadioButton Style="{StaticResource menuButton}" Margin="0,291,0,453" x:Name="RbOrderVisitor" Click="RbOrderVisitor_Click">
+                <StackPanel Style="{StaticResource SPMain}">
+                    <TextBlock Text="Заказы" Style="{StaticResource TextRadioForeground}" />
+                </StackPanel>
+            </RadioButton>
+            <RadioButton Style="{StaticResource menuButton}" Margin="0,537,0,207" x:Name="RbUser" Click="RbUser_Click">
+                <StackPanel Style="{StaticResource SPMain}">
+                    <TextBlock Text="Пользователи" Style="{StaticResource TextRadioForeground}" />
+                </StackPanel>
+            </RadioButton>
+            <RadioButton Style="{StaticResource menuButton}" Margin="0,372,0,372" x:Name="RbReports" Click="RbReports_Click">
+                <StackPanel Style="{StaticResource SPMain}">
+                    <TextBlock Text="Отчеты" Style="{StaticResource TextRadioForeground}" />
+                </StackPanel>
+            </RadioButton>
+            <RadioButton Style="{StaticResource menuButton}" Margin="0,453,0,291" x:Name="RbMenuManagement" Click="RbMenuManagement_Click">
+                <StackPanel Style="{StaticResource SPMain}">
+                    <TextBlock Text="Управление меню" Style="{StaticResource TextRadioForeground}" />
+                </StackPanel>
+            </RadioButton>
+            <RadioButton Style="{StaticResource menuButton}" x:Name="RbExit" Click="RbExit_Click" Margin="0,713,0,31"  >
+                <StackPanel Style="{StaticResource SPMain}">
+                    <TextBlock Text="Выйти" Style="{StaticResource TextRadioForeground}" />
+                </StackPanel>
+            </RadioButton>
+        </Grid>
+        <Frame x:Name="MainFrame" Grid.Column="1" Margin="0" HorizontalAlignment="Center" NavigationUIVisibility="Hidden"/>
+    </Grid>
+</Window>

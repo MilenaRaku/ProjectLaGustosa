@@ -1,0 +1,44 @@
+﻿<Page x:Class="LaGustosa.UI.Pgs.PgsAddEditUser"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:LaGustosa.UI.Pgs"
+      mc:Ignorable="d" 
+       Height="700" Width="950"
+      Title="AddEditUser">
+
+    <Border Style="{StaticResource BorderAdEdUser}">
+        <Grid HorizontalAlignment="Center" Margin="0,-33,0,-37" Height="700" Width="900">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="Фамилия" Style="{StaticResource TblockAdEdUser}" />
+            <TextBlock Text="Имя" Grid.Row="1" Style="{StaticResource TblockAdEdUser}"/>
+            <TextBlock Text="Отчество" Grid.Row="2" Style="{StaticResource TblockAdEdUser}" />
+            <TextBlock Text="Логин" Grid.Row="3" Style="{StaticResource TblockAdEdUser}"/>
+            <TextBlock Text="Пароль"  Grid.Row="4" Style="{StaticResource TblockAdEdUser}" />
+            <TextBlock Text="Роль" Grid.Row="5" Style="{StaticResource TblockAdEdUser}"/>
+
+            <TextBox x:Name="TboxLN" Text="{Binding LName}" Grid.Column="1" Grid.Row="0" Style="{StaticResource TboxAdEdUser}" />
+            <TextBox x:Name="TboxFN" Text="{Binding FName}" Grid.Column="1" Grid.Row="1" Style="{StaticResource TboxAdEdUser}" />
+            <TextBox x:Name="TboxPatr" Text="{Binding Patronymic}" Grid.Column="1" Grid.Row="2" Style="{StaticResource TboxAdEdUser}" />
+            <TextBox x:Name="TboxLogin" Text="{Binding Login}" Grid.Column="1" Grid.Row="3" Style="{StaticResource TboxAdEdUser}" />
+            <TextBox x:Name="TboxPasw" Text="{Binding Password}" Grid.Column="1" Grid.Row="4" Style="{StaticResource TboxAdEdUser}" />
+            <ComboBox x:Name="ComBoxRole"  SelectedItem="{Binding RoleId}"  DisplayMemberPath="Role1" Grid.Column="1" Grid.Row="5" Style="{StaticResource ComboxAdEdUser}" />
+
+            <Button Content="Назад" x:Name="BtnBack" Grid.Row="6" Style="{StaticResource Button}" HorizontalAlignment="Center" Margin="0,17,0,33" Click="BtnBack_Click"/>
+            <Button Content="Добавить" x:Name="BtnSave" Grid.Column="1" Grid.Row="6" Style="{StaticResource Button}" HorizontalAlignment="Left" Margin="470,17,0,33" Click="BtnSave_Click"/>
+        </Grid>
+    </Border>
+</Page>

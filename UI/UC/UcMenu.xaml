@@ -1,0 +1,182 @@
+﻿<UserControl x:Class="LaGustosa.UI.UC.UcMenu"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:LaGustosa.UI.UC"
+             mc:Ignorable="d" 
+             Height="800" Width="1200">
+    <UserControl.Resources>
+        <Storyboard x:Key="HoverAnimation">
+            <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0.9" Duration="0:0:0.2"/>
+            <ColorAnimation Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" 
+                    To="#FFF5F5F5" Duration="0:0:0.2"/>
+        </Storyboard>
+
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="191*"/>
+            <ColumnDefinition Width="77*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Top" Height="95">
+            <TextBlock Text="Меню  " FontSize="28" FontWeight="Bold" Style="{StaticResource Foreground}" Margin="10,30,0,0"/>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
+                <TextBox x:Name="TBoxSearch" TextChanged="TBoxSearch_TextChanged" 
+                         Width="250" Height="35"  Margin="0,0,10,0"
+                         Padding="8" VerticalContentAlignment="Center"
+                         Style="{StaticResource ModernTextBox}"/>
+
+                <ComboBox x:Name="CombBoxMenu" SelectionChanged="CombBoxMenu_SelectionChanged"
+                          Width="200" Height="35" FontSize="14"
+                          DisplayMemberPath="Category" />
+            </StackPanel>
+        </StackPanel>
+
+
+        <!-- Левая часть - Меню -->
+        <Grid Grid.Column="0" Margin="8,100,5,0">
+            <ScrollViewer VerticalScrollBarVisibility="Hidden" 
+                          HorizontalScrollBarVisibility="Disabled"
+                          Padding="20"   Style="{StaticResource CustomScrollViewerStyle}">
+                <ItemsControl x:Name="DishesList" ItemsSource="{Binding Dishes}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+
+                    <ItemsControl.ItemContainerStyle>
+                        <Style TargetType="ContentPresenter">
+                            <Setter Property="Width" Value="280"/>
+                            <Setter Property="Margin" Value="0,10,0,0"/>
+                        </Style>
+                    </ItemsControl.ItemContainerStyle>
+
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border Style="{StaticResource DishCardStyle}" BorderBrush="Gray" BorderThickness="1">
+                                <Border.RenderTransform>
+                                    <ScaleTransform ScaleX="1" ScaleY="1"/>
+                                </Border.RenderTransform>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Image Grid.Row="0" Source="{Binding Image}" Style="{StaticResource DishImageStyle}"/>
+
+                                    <TextBlock Grid.Row="1" Text="{Binding Name}" Style="{StaticResource DishTitleStyle}"/>
+
+                                    <TextBlock Grid.Row="2" Text="{Binding Description}" Style="{StaticResource DishDescriptionStyle}"/>
+
+                                    <StackPanel Grid.Row="3" Orientation="Horizontal">
+                                        <TextBlock Text="Вес: " Style="{StaticResource DishInfoStyle}"/>
+                                        <TextBlock Text="{Binding Weight}" Style="{StaticResource DishInfoStyle}"/>
+                                        <TextBlock Text=" | Цена: " Style="{StaticResource DishInfoStyle}"/>
+                                        <TextBlock Text="{Binding Price, StringFormat={}{0:# руб.}}" Style="{StaticResource DishInfoStyle}" FontWeight="Bold"/>
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,16">
+                                        <Button x:Name="BtnDecreaseQuantity" Content="-" Style="{StaticResource DishButtonStyle}" Click="BtnDecreaseQuantity_Click"/>
+
+                                        <TextBlock x:Name="QuantityTextBlock" Text="0" Width="40" TextAlignment="Center" VerticalAlignment="Center" FontSize="16"/>
+
+                                        <Button x:Name="BtnIncreaseQuantity" Content="+" Style="{StaticResource DishButtonStyle}" Click="BtnIncreaseQuantity_Click"/>
+
+                                        <Button x:Name="BtnAddToOrder" Content="Добавить" Style="{StaticResource DishButtonStyle}" Width="120" Margin="12,0,0,0" Click="BtnAddToOrder_Click"/>
+                                    </StackPanel>
+                                </Grid>
+
+                                <Border.Triggers>
+                                    <EventTrigger RoutedEvent="MouseEnter">
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX"
+                                         To="1.02" Duration="0:0:0.2"/>
+                                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY"
+                                         To="1.02" Duration="0:0:0.2"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+                                    <EventTrigger RoutedEvent="MouseLeave">
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX"
+                                         To="1.0" Duration="0:0:0.2"/>
+                                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY"
+                                         To="1.0" Duration="0:0:0.2"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+                                </Border.Triggers>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </Grid>
+
+        <Border Grid.Column="1" Width="350" Background="White" Padding="10" Margin="0,100,0,0">
+            <StackPanel>
+                <TextBlock Text="Ваш заказ" FontSize="20" FontWeight="Bold"/>
+
+                <ListView x:Name="OrderItemsList" Height="370" Width="330">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="2" Width="330">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding Dish.Name}" FontWeight="SemiBold"/>
+
+                               <StackPanel Grid.Row="1" Grid.Column="0" 
+                                    Orientation="Horizontal" 
+                                    VerticalAlignment="Center">
+                            <TextBlock>
+                                <Run Text="{Binding NumberPositions}"/>
+                                <Run Text="шт."/>
+                            </TextBlock>
+                            
+                            <TextBlock Margin="10,0,10,0" 
+                                       Text="{Binding Dish.Price, StringFormat={}{0:# руб.}}"/>
+                            
+                            <StackPanel Orientation="Horizontal"  Margin="10,0,0,0">
+                                <Button Content="+" Width="25" Height="25" Padding="0" Margin="0,0,2,0" Style="{StaticResource BackgroundButton}" Click="ChangeQuantity_Click" Tag="{Binding}"/>
+                                
+                                <Button Content="-"  Width="25" Height="25" Padding="0" Margin="2,0,2,0" Style="{StaticResource BackgroundButton}" Click="ChangeQuantity_Click" Tag="{Binding}"/>
+                                
+                                <Button Content="×" Width="25" Height="25" Padding="0" Margin="2,0,0,0" Style="{StaticResource BackgroundButton}" Click="RemoveItem_Click" Tag="{Binding}"/>
+                            </StackPanel>
+                        </StackPanel>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+                <TextBlock x:Name="TotalAmountText" FontSize="18" FontWeight="Bold" Margin="0,10,0,10"/>
+
+                <TextBlock Text="Выберите номер стола: "/>
+
+                <ComboBox x:Name="TablesComboBox" Width="280" HorizontalAlignment="Left" DisplayMemberPath="Number" SelectionChanged="TablesComboBox_SelectionChanged"/>
+
+                <Button Content="Оформить заказ" Click="SubmitOrder_Click" HorizontalAlignment="Left"  Height="40" Width="230" Margin="20,20,0,0" FontSize="18" Style="{StaticResource Button}" />
+
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

@@ -1,0 +1,28 @@
+﻿<Page x:Class="LaGustosa.UI.Pgs.PgsAuthorization"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:LaGustosa.UI.Pgs"
+      mc:Ignorable="d" 
+      Height="700" Width="900"
+      Title="LaGustosa | Авторизация">
+
+    <Grid>
+        <Border Style="{StaticResource BorderPgs}">
+            <Grid>
+
+                <TextBlock Text="Авторизация" Style="{StaticResource TbAutorization}" Margin="70,80,0,0" FontSize="50"/>
+                <TextBlock Text="Логин" Style="{StaticResource TbAutorization}" Margin="70,240,0,0"/>
+                <TextBox x:Name="TbLog" Style="{StaticResource TBAutorizationLog}" Margin="70,294,0,366" />
+                <TextBlock Text="Пароль" Style="{StaticResource TbAutorization}" Margin="70,390,0,0"/>
+                <TextBox x:Name="TbPassword" Style="{StaticResource TBAutorizationPas}" Margin="70,442,0,218" />
+                <PasswordBox x:Name="PbPasword" Style="{StaticResource PBAutorizationPas}" Margin="70,442,0,218" />
+                <Image MouseLeftButtonDown="Image_MouseLeftButtonDown" Source="/Resourse/Img/yey.png" Style="{StaticResource ImgAutorization}" Margin="0,432,158,208" />
+
+                <Button x:Name="BtnBack" Click="BtnBack_Click" Content="Назад" Style="{StaticResource Button}" Margin="70,0,0,73" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+                <Button x:Name="BtnEnter" Click="BtnEnter_Click" Content="Войти" Style="{StaticResource Button}" Margin="0,0,70,73" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+            </Grid>
+        </Border>
+    </Grid>
+</Page>
